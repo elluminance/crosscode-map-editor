@@ -13,6 +13,9 @@ import { PropTypeWidgetComponent } from './prop-type-widget/prop-type-widget.com
 import { ScalablePropConfigWidgetComponent } from './scalable-prop-config-widget/scalable-prop-config-widget.component';
 import { CustomDesTypeWidgetComponent } from './custom-des-type-widget/custom-des-type-widget.component';
 import { CharacterWidgetComponent } from './character-widget/character-widget.component';
+import { Vec3WidgetComponent } from './vec3-widget/vec3-widget.component';
+import { SimpleVec3WidgetComponent } from './simple-vec3-widget/simple-vec3-widget.component';
+import { SheetNameWidgetComponent } from './sheet-name-widget/sheet-name-widget.component';
 
 @Injectable({
 	providedIn: 'root'
@@ -29,6 +32,8 @@ export class WidgetRegistryService {
 		this.register('Boolean', BooleanWidgetComponent);
 		this.register('NPCStates', NPCStatesWidgetComponent);
 		this.register('Vec2', Vec2WidgetComponent);
+		this.register('Vec3', Vec3WidgetComponent);
+		this.register('Offset', SimpleVec3WidgetComponent);
 		this.register('Event', EventWidgetComponent);
 		this.register('Action', EventWidgetComponent);
 		this.register('Character', CharacterWidgetComponent);
@@ -40,6 +45,8 @@ export class WidgetRegistryService {
 		this.register('EntityAnim', StringWidgetComponent);
 		this.register('CustomDesType', CustomDesTypeWidgetComponent);
 		this.register('VarCondition', StringWidgetComponent);
+		this.register('Animation', SheetNameWidgetComponent);
+		this.register('Effect', SheetNameWidgetComponent);
 	}
 	
 	private setDefaultWidget(widget: any) {

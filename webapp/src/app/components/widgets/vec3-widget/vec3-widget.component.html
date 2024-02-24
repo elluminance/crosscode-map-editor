@@ -1,0 +1,27 @@
+<div fxLayout="row" class="property-container" [matTooltip]="attribute?.description ?? ''">
+	<label class="property-name">{{displayName || key}}:</label>
+	
+	<label class="property-name-small">X:</label>
+	<input type="number" class="default-input small-input"
+	       [step]="1"
+		   [ngModel]="settings[key].x"
+		   (input)="setVal('x', toInt($any($event.target).value))">
+	
+	<label class="property-name-small">Y:</label>
+	<input type="number" class="default-input small-input"
+	       [step]="1"
+		   [ngModel]="settings[key].y"
+		   (input)="setVal('y', toInt($any($event.target).value))">
+
+	<label *ngIf="!usingLvl" class="property-name-small">Z:</label>
+	<input *ngIf="!usingLvl" type="number" class="default-input small-input"
+			[step]="1"
+			[ngModel]="settings[key].z"
+			(input)="setVal('z', toInt($any($event.target).value))">
+	<label *ngIf="usingLvl" class="property-name-small">lvl:</label>
+	<input *ngIf="usingLvl" type="number" class="default-input small-input"
+			[step]="1"
+			[ngModel]="settings[key].lvl"
+			(input)="setVal('lvl', toInt($any($event.target).value))">
+
+</div>

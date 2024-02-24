@@ -38,7 +38,7 @@ export class DefaultEvent<T extends EventType = DefaultEventData> extends Abstra
 	}
 	
 	update() {
-		this.info = this.getTypeString('#ff5a5b');
+		this.info = this.getTypeString();
 		if (!this.type) {
 			this.info += ' ' + this.getAllPropStrings();
 			return;
@@ -58,4 +58,7 @@ export class DefaultEvent<T extends EventType = DefaultEventData> extends Abstra
 		return {};
 	}
 	
+	protected getStepColor() {
+
+	}
 }

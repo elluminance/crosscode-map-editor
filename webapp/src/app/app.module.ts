@@ -60,6 +60,9 @@ import { ImageSelectOverlayComponent } from './components/widgets/shared/image-s
 import { AutocompletedTextboxComponent } from './components/widgets/string-widget/autocompleted-textbox/autocompleted-textbox.component';
 import { StringWidgetComponent } from './components/widgets/string-widget/string-widget.component';
 import { Vec2WidgetComponent } from './components/widgets/vec2-widget/vec2-widget.component';
+import { Vec3WidgetComponent } from './components/widgets/vec3-widget/vec3-widget.component';
+import { SimpleVec3WidgetComponent } from './components/widgets/simple-vec3-widget/simple-vec3-widget.component';
+import { SheetNameWidgetComponent } from './components/widgets/sheet-name-widget/sheet-name-widget.component';
 import { AutofocusDirective } from './directives/autofocus.directive';
 import { HighlightDirective } from './directives/highlight.directive';
 import { HostDirective } from './directives/host.directive';
@@ -76,6 +79,8 @@ const WIDGETS = [
 	JsonWidgetComponent,
 	LevelWidgetComponent,
 	Vec2WidgetComponent,
+	Vec3WidgetComponent,
+	SimpleVec3WidgetComponent,
 	NPCStatesWidgetComponent,
 	NpcStatesComponent,
 	EventWidgetComponent,
@@ -91,6 +96,7 @@ const WIDGETS = [
 	CustomDesTypeWidgetComponent,
 	CustomExpressionWidgetComponent,
 	CharacterWidgetComponent,
+	SheetNameWidgetComponent,
 ];
 
 @NgModule({

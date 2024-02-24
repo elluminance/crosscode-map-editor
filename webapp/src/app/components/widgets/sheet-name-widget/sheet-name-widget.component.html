@@ -1,0 +1,14 @@
+<div fxLayout="row" class="property-container" [matTooltip]="attribute?.description ?? ''">
+	<label class="property-name">{{key}}:</label>
+	
+	<label class="property-name">Sheet:</label>
+	<input class="default-input small-input"
+		[ngModel]="settings[key]?.sheet ?? ''"
+		(input)="setVal('sheet', $any($event.target).value)">
+
+	<label class="property-name">Name:</label>
+	<input class="default-input small-input"
+		[ngModel]="settings[key]?.name ?? ''"
+		(input)="setVal('name', $any($event.target).value)">
+
+</div>

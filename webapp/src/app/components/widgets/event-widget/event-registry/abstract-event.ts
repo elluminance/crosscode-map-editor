@@ -151,6 +151,8 @@ export namespace WMTypes {
 		sheet: string;
 		name: string;
 	}
+
+	export type LangLabel = Label;
 }
 
 export interface EventType {
@@ -164,7 +166,6 @@ export interface EventTypeChild {
 }
 
 export abstract class AbstractEvent<T extends EventType> {
-	
 	public info = '---';
 	public children: EventTypeChild[] = [];
 	
@@ -285,6 +286,10 @@ export abstract class AbstractEvent<T extends EventType> {
 					}
 					break;
 				}
+				case 'LangLabel': {
+					const label = value as WMTypes.LangLabel;
+					value = this.getProcessedText(label);
+				}
 			}
 		}
 		
@@ -318,8 +323,67 @@ export abstract class AbstractEvent<T extends EventType> {
 		}
 	}
 	
-	protected getTypeString(color: string): string {
-		color = this.sanitize(color);
+	protected getDefaultStepColor(): string {
+		const colorStepRules: [RegExp, string][] = [
+			//Vanilla color rules
+			[/ACTION/, 'green'],
+			[/ANIM/, 'green'],
+			[/WAIT/, 'gray'],
+			[/VAR/, 'violet'],
+			[/LABEL/, 'orangered'],
+			[/CAMERA/, 'yellow'],
+			[/GUI/, 'orange'],
+			[/OVERLAY/, 'yellow'],
+			[/DREAM_MSG/, 'red'],
+			[/DREAM/, 'yellow'],
+			[/SCREEN_BLUR/, 'yellow'],
+			[/TIMER/, 'cyan'],
+			[/STAT/, 'orange'],
+			[/TROPHY/, 'orange'],
+			[/DIRECT_HIT/, 'red'],
+			[/CIRCLE_ATTACK/, 'red'],
+			[/TACKLE/, 'red'],
+			[/COMBAT/, 'violet'],
+			[/ANNOTATION/, 'orange'],
+			[/TASK/, 'violet'],
+			[/CORE/, 'violet'],
+			[/MSG/, 'red'],
+			[/SHOW_CHOICE/, 'red'],
+			[/LORE/, 'orange'],
+			[/QUEST/, 'limegreen'],
+			[/CREDIT/, 'pink'],
+			[/CREDITS/, 'pink'],
+			[/ARENA/, 'orange'],
+
+			//Custom color rules
+			[/PARTY/, 'lightblue'],
+			[/CONTACT/, 'lightblue'],
+			[/ENEM(Y|IES)/, 'deeppink'],
+			[/ENTITY/, 'olivedrab'],
+			[/NPC/, 'olivedrab'],
+			[/EFFECT/, 'palevioletred'],
+			[/SOUND/, 'yellowgreen'],
+			[/BGM/, 'yellowgreen'],
+			[/(^|_)MOVE(MENT)?(_|$)/, 'goldenrod'],
+			[/STOP_XY/, 'goldenrod'],
+			[/POS/, 'goldenrod'],
+			[/SPEED/, 'goldenrod'],
+			[/ACCEL/, 'goldenrod'],
+			[/VEL/, 'goldenrod'],
+		];
+
+		const type = this.data.type;
+
+		for(const [rule, color] of colorStepRules) {
+			if(rule.test(type)) {
+				return color;
+			}
+		}
+		return '#ff5a5b';
+	}
+
+	protected getTypeString(color?: string): string {
+		color = this.sanitize(color || this.getDefaultStepColor());
 		return this.getBoldString(this.data.type, color);
 	}
 	
