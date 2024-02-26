@@ -63,6 +63,7 @@ import { Vec2WidgetComponent } from './components/widgets/vec2-widget/vec2-widge
 import { Vec3WidgetComponent } from './components/widgets/vec3-widget/vec3-widget.component';
 import { SimpleVec3WidgetComponent } from './components/widgets/simple-vec3-widget/simple-vec3-widget.component';
 import { SheetNameWidgetComponent } from './components/widgets/sheet-name-widget/sheet-name-widget.component';
+import { ModalChoiceOptionsWidgetComponent } from './components/widgets/modal-choice-options-widget/modal-choice-options-widget.component';
 import { AutofocusDirective } from './directives/autofocus.directive';
 import { HighlightDirective } from './directives/highlight.directive';
 import { HostDirective } from './directives/host.directive';
@@ -97,6 +98,7 @@ const WIDGETS = [
 	CustomExpressionWidgetComponent,
 	CharacterWidgetComponent,
 	SheetNameWidgetComponent,
+	ModalChoiceOptionsWidgetComponent,
 ];
 
 @NgModule({

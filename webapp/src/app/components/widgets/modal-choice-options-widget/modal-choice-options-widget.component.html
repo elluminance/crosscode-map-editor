@@ -1,0 +1,11 @@
+<div fxLayout="row" class="property-container" [matTooltip]="attribute?.description ?? ''">
+	<label class="property-name">{{key}}:</label>
+	<div fxLayout="column" fxFlex="1 0 0">
+		<button mat-stroked-button (click)="addOption()">Add Choice</button>
+		
+		<div *ngFor="let option of settings[key]; index as i" fxLayout="row" fxFlex="1 0 0" class="property-row">
+			<label class="property-name">option {{i}}:</label>
+			<app-langlabel-widget [custom]="settings[key][i]" key="label"></app-langlabel-widget>
+		</div>
+	</div>
+</div>

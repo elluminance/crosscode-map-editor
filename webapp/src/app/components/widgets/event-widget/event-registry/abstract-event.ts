@@ -153,6 +153,11 @@ export namespace WMTypes {
 	}
 
 	export type LangLabel = Label;
+
+	export interface ModalChoiceOption {
+		label: Label;
+	}
+	export type ModalChoiceOptions = ModalChoiceOption[];
 }
 
 export interface EventType {

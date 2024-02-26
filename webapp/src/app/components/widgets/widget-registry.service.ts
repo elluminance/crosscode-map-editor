@@ -16,6 +16,7 @@ import { CharacterWidgetComponent } from './character-widget/character-widget.co
 import { Vec3WidgetComponent } from './vec3-widget/vec3-widget.component';
 import { SimpleVec3WidgetComponent } from './simple-vec3-widget/simple-vec3-widget.component';
 import { SheetNameWidgetComponent } from './sheet-name-widget/sheet-name-widget.component';
+import { ModalChoiceOptionsWidgetComponent } from './modal-choice-options-widget/modal-choice-options-widget.component';
 
 @Injectable({
 	providedIn: 'root'
@@ -47,6 +48,7 @@ export class WidgetRegistryService {
 		this.register('VarCondition', StringWidgetComponent);
 		this.register('Animation', SheetNameWidgetComponent);
 		this.register('Effect', SheetNameWidgetComponent);
+		this.register('ModalChoiceOptions', ModalChoiceOptionsWidgetComponent);
 	}
 	
 	private setDefaultWidget(widget: any) {
