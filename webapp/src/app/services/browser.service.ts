@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Globals } from './globals';
 import { SharedService } from './shared-service';
+import { loadModAssets } from './mod-assets';
 
 @Injectable({
 	providedIn: 'root'
@@ -38,6 +39,8 @@ export class BrowserService implements SharedService {
 			},
 			body: JSON.stringify({mod})
 		});
+
+		await loadModAssets();
 	}    
 
 	public async saveModSelect(mod: string): Promise<void> {

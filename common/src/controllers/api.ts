@@ -27,6 +27,15 @@ async function tryReadDir(dir: string): Promise<string[]> {
 	}
 }
 
+async function tryReadFile(path: string): Promise<Buffer | string> {
+	const fs = await fsPromise;
+	try {
+		return await fs.promises.readFile(path);
+	} catch {
+		return '';
+	}
+}
+
 /**
  * Searches a file or directory in the given base directory for the specified files and stores it in filelist.
  * CAUTION: Stores data in input variable (filelist)
@@ -210,6 +219,32 @@ export async function getAllFilesInFolder(dir: string, folder: string, extension
 
 	return result.sort()
 		.map(p => p.substring(folder.length, p.length - `.${extension}`.length));
+}
+
+export async function getAllModAssetDefinitions(dir: string) {
+	const path = await pathPromise;
+	//const fs = await fsPromise;
+	const modContents: Record<string, any> = {};
+
+	const promises: Promise<[string, Buffer | string]>[] = [];
+	for (const mod of mods) {
+		const modDir = path.join(dir, 'mods', mod);
+		const filePath = path.resolve(modDir, 'map-editor.json');
+		promises.push((async(): Promise<[string, Buffer | string]> => [mod, await tryReadFile(filePath)])());
+	}
+
+	const rawAdditions = await Promise.all(promises);
+
+	for (const [mod, definitions] of rawAdditions) {
+		try {
+			const parsed = JSON.parse(definitions as unknown as string);
+			modContents[mod] = parsed;
+		} catch (error) {
+			//console.error('Invalid json data in map-editor.json of mod: ' + mod, error);
+		}
+	}
+	console.log(mods);
+	return modContents;
 }
 
 export async function getAllMods(dir: string) {

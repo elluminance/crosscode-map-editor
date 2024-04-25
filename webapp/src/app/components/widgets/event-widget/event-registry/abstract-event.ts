@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { EntityAttributes } from '../../../../services/phaser/entities/cc-entity';
 import { Label } from '../../../../models/events';
 import { Point, Point3, PartialPoint3 } from '../../../../models/cross-code-map';
+import { Globals } from '../../../../services/globals';
 
 export type WMTypeNames = 'Action'
 	| 'Actor'
@@ -336,14 +337,7 @@ export abstract class AbstractEvent<T extends EventType> {
 	}
 
 	protected getProcessedText(langLabel: Label): string {
-		const textColors = [
-			null,	   // \c[0] White
-			'#ff6969', // \c[1] Red
-			'#65ff89', // \c[2] Green
-			'#ffe430', // \c[3] Yellow
-			'#808080', // \c[4] Gray
-			//'#ff8932',  \c[5] Orange, only used for small font in vanilla
-		];
+		const textColors = Globals.fontColors;
 		let text = langLabel?.en_US ?? '';
 
 		let inSpan = false;

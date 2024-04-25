@@ -62,6 +62,10 @@ export class HttpClientService {
 		return this.request('api/allMods', api.getAllMods);
 	}
 
+	getModAssetDefinitions() {
+		return this.request('api/allModDefinitions', api.getAllModAssetDefinitions);
+	}
+
 	getAssetsFile<T>(path: string): Observable<T> {
 		if (!Globals.isElectron) {
 			return this.http.post<T>(Globals.URL + 'api/get', { path });

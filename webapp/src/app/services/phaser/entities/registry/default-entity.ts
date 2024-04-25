@@ -1,4 +1,4 @@
-import entities from '../../../../../assets/entities.json';
+import { Globals } from '../../../../services/globals';
 import { CCMap } from '../../tilemap/cc-map';
 import { CCEntity, EntityAttributes, ScaleSettings } from '../cc-entity';
 
@@ -39,7 +39,7 @@ export class DefaultEntity extends CCEntity {
 	
 	constructor(scene: Phaser.Scene, map: CCMap, x: number, y: number, private typeName: string) {
 		super(scene, map, x, y, typeName);
-		this.typeDef = entities[typeName];
+		this.typeDef = Globals.entities[typeName];
 	}
 	
 	private readonly typeDef?: JsonEntityType;

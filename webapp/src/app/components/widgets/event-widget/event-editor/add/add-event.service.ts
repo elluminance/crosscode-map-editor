@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable, Subject } from 'rxjs';
 
-import actions from '../../../../../../assets/actions.json';
-import events from '../../../../../../assets/events.json';
+import { Globals } from '../../../../../services/globals';
 import {
 	ListSearchOverlayComponent
 } from '../../../../dialogs/list-search-overlay/list-search-overlay.component';
@@ -32,14 +31,14 @@ export class AddEventService {
 		private domSanitizer: DomSanitizer
 	) {
 		const registry = Object.keys(this.eventRegistry.getAll());
-		const eventNames = Object.keys(events);
+		const eventNames = Object.keys(Globals.events);
 		
 		const eventSet = new Set<string>([...registry, ...eventNames]);
 		
 		this.events = Array.from(eventSet);
 		this.events.sort();
 		
-		this.actions = Object.keys(actions);
+		this.actions = Object.keys(Globals.actions);
 		this.actions.sort();
 	}
 	

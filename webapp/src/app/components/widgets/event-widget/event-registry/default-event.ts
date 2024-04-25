@@ -1,9 +1,7 @@
 import { DomSanitizer } from '@angular/platform-browser';
-import actions from '../../../../../assets/actions.json';
-import events from '../../../../../assets/events.json';
 import { AttributeValue, EntityAttributes } from '../../../../services/phaser/entities/cc-entity';
 import { AbstractEvent, EventType } from './abstract-event';
-
+import { Globals } from '../../../../services/globals';
 interface DefaultEventData extends EventType {
 	[key: string]: any;
 }
@@ -24,9 +22,9 @@ export class DefaultEvent<T extends EventType = DefaultEventData> extends Abstra
 	) {
 		super(domSanitizer, data, actionStep);
 		if (actionStep) {
-			this.type = actions[this.data.type];
+			this.type = Globals.actions[this.data.type];
 		} else {
-			this.type = events[this.data.type];
+			this.type = Globals.events[this.data.type];
 		}
 	}
 	
